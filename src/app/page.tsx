@@ -1,7 +1,7 @@
 import SearchForm from "@/comoponents/form";
 import { getData } from "@/lib/data";
 import { Link } from "@chakra-ui/next-js";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, SimpleGrid } from "@chakra-ui/react";
 
 export default async function Page() {
   return (
@@ -11,7 +11,18 @@ export default async function Page() {
           <SearchForm />
         </Box>
       </section>
-      <section id="section2"> Results to be displayed here</section>
+      <section id="section2">
+        {" "}
+        <h2>Results to be displayed here</h2>
+        <SimpleGrid minChildWidth="120px" spacing="40px">
+          <Box bg="tomato" height="80px"></Box>
+          <Box bg="tomato" height="80px"></Box>
+          <Box bg="tomato" height="80px"></Box>
+          <Box bg="tomato" height="80px"></Box>
+          <Box bg="tomato" height="80px"></Box>
+          <Box bg="tomato" height="80px"></Box>
+        </SimpleGrid>
+      </section>
     </Container>
   );
 }
