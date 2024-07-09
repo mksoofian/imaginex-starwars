@@ -1,5 +1,10 @@
+import next from "next";
+
 export async function getData() {
-  const res = await fetch("http https://swapi.dev/api/");
+  const res = await fetch("https://swapi.dev/api/", {
+    next: { revalidate: 3600 },
+  });
+
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
