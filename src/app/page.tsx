@@ -14,12 +14,14 @@ import {
 import { useFormContext } from "./providers";
 import ResultCard from "@/components/result.Card";
 import { css } from "@emotion/react";
+import NextLink from "next/link";
+import { Link } from "@chakra-ui/react";
 
 export default function Page() {
   const { category, data } = useFormContext();
 
   return (
-    <Container maxWidth="1440px" height="100vh" centerContent>
+    <Container maxWidth="1440px" centerContent>
       {/* HERO SECTION WITH QUERY FORM */}
       <Box as="section" id="section1" width="100%">
         <Box
@@ -47,10 +49,32 @@ export default function Page() {
           })}
           <Box width={80} height={80}></Box>
         </SimpleGrid>
+
         {/* Pagination Buttons */}
-        {/* {data?.map((option) => {
-          return <Button></Button>;
-        })} */}
+        <Flex css={{ margin: "25px" }} justifyContent="center">
+          {data && data?.previous !== null && (
+            <Link
+              as={NextLink}
+              href={data?.previous}
+              rounded="15px"
+              css={{ border: "1px solid black" }}
+            >
+              Previous Page
+            </Link>
+          )}
+          {data && data?.previous !== null && data?.next !== null && <p> | </p>}
+          {data && data?.next !== null && (
+            <Link
+              as={NextLink}
+              href={data?.next}
+              rounded="25px"
+              padding="10px 20px"
+              css={{ border: "1px solid black" }}
+            >
+              Next Page
+            </Link>
+          )}
+        </Flex>
       </Box>
     </Container>
   );
