@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { fonts } from "./fonts";
 import { Providers } from "./providers";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Star Wars",
@@ -13,9 +14,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={fonts.rubik.variable}>
+    <html
+      lang="en"
+      className={(fonts.rubik.variable, fonts.roboto_mono.variable)}
+    >
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

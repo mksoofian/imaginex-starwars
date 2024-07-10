@@ -2,6 +2,7 @@
 
 import { useFormContext } from "@/app/providers";
 import {
+  Flex,
   FormControl,
   FormLabel,
   Input,
@@ -21,17 +22,7 @@ export default function SearchForm() {
   }
 
   return (
-    <VStack spacing={4} align="stretch" padding={5}>
-      <FormControl>
-        <FormLabel>Search Database</FormLabel>
-        <Input
-          type="text"
-          value={query}
-          onChange={(e) => {
-            handleSearch(e.target.value);
-          }}
-        />
-      </FormControl>
+    <Flex gap={4} align="stretch" padding={5} flexWrap="wrap">
       <FormControl>
         <FormLabel>Categories</FormLabel>
         <Select
@@ -48,6 +39,16 @@ export default function SearchForm() {
           <option value="vehicles">Vehicles</option>
         </Select>
       </FormControl>
-    </VStack>
+      <FormControl>
+        <FormLabel>Search Database</FormLabel>
+        <Input
+          type="text"
+          value={query}
+          onChange={(e) => {
+            handleSearch(e.target.value);
+          }}
+        />
+      </FormControl>
+    </Flex>
   );
 }
