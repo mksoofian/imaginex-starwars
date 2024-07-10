@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 async function fetchFilms() {
-  const res = await fetch("https://swapi.dev/api/films/", {
+  const res = await fetch(`https://swapi.dev/api/films/`, {
     next: { revalidate: 3600 },
   });
 

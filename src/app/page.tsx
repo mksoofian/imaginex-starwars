@@ -14,11 +14,19 @@ import {
 import { useFormContext } from "./providers";
 import ResultCard from "@/components/result.Card";
 import { css } from "@emotion/react";
-import NextLink from "next/link";
-import { Link } from "@chakra-ui/react";
 
 export default function Page() {
-  const { category, data } = useFormContext();
+  const { category, data, setPage } = useFormContext();
+
+  const handlePageChange = () => {
+    const toPage = data?.next.slice(data?.next.length - 1);
+    if (toPage === "/") {
+      setPage(1);
+    } else {
+      const pageNumber = parseInt(toPage as string);
+      setPage(pageNumber);
+    }
+  };
 
   return (
     <Container maxWidth="1440px" centerContent>
@@ -53,26 +61,25 @@ export default function Page() {
         {/* Pagination Buttons */}
         <Flex css={{ margin: "25px" }} justifyContent="center">
           {data && data?.previous !== null && (
-            <Link
-              as={NextLink}
-              href={data?.previous}
-              rounded="15px"
+            <Button
+              onClick={handlePageChange}
+              variant="outline"
+              size="md"
               css={{ border: "1px solid black" }}
             >
               Previous Page
-            </Link>
+            </Button>
           )}
           {data && data?.previous !== null && data?.next !== null && <p> | </p>}
           {data && data?.next !== null && (
-            <Link
-              as={NextLink}
-              href={data?.next}
-              rounded="25px"
-              padding="10px 20px"
+            <Button
+              onClick={handlePageChange}
+              variant="outline"
+              size="md"
               css={{ border: "1px solid black" }}
             >
               Next Page
-            </Link>
+            </Button>
           )}
         </Flex>
       </Box>

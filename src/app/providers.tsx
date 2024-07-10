@@ -11,6 +11,8 @@ export type FormContextType = {
   category: string; // Why can't I get CategoryNames | null to work...?
   setCategory: (_value: string) => void; // Why can't I get CategoryNames | null to work...?
   data: ResponseInfo | null;
+  page: number;
+  setPage: (_value: number) => void;
 };
 export const FormContext = createContext<FormContextType>({
   query: "",
@@ -18,27 +20,34 @@ export const FormContext = createContext<FormContextType>({
   category: "", // Why can't I get CategoryNames | null to work...?
   setCategory: (_value: string) => {}, // Why can't I get CategoryNames | null to work...?
   data: null,
+  page: 1,
+  setPage: (_value: number) => {},
 });
 export const useFormContext = () => useContext(FormContext);
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState(""); // Why can't I get CategoryNames | null to work...?
   const [data, setData] = useState(null);
-  //   const [isLoading, setLoading] = useState(true);
+  const [category, setCategory] = useState(""); // Why can't I get CategoryNames | null to work...?
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (category === "") {
       console.log("No category to fetch");
+    } else if (category && page > 1) {
+      fetch(`/api/${category.toLowerCase()}/?page=${page}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+        });
     } else {
       fetch(`/api/${category.toLowerCase()}/`)
         .then((res) => res.json())
         .then((data) => {
           setData(data);
-          // setLoading(false);
         });
     }
-  }, [category]);
+  }, [category, page]);
 
   // FOR DEBUGGING ONLY
   useEffect(() => {
@@ -48,7 +57,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ChakraProvider>
       <FormContext.Provider
-        value={{ query, setQuery, category, setCategory, data }}
+        value={{ query, setQuery, category, setCategory, page, setPage, data }}
       >
         {children}
       </FormContext.Provider>
