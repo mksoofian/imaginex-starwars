@@ -2,6 +2,7 @@
 import SearchForm from "@/components/form";
 import { Box, Container, SimpleGrid } from "@chakra-ui/react";
 import { useFormContext } from "./providers";
+import ResultCard from "@/components/result.Card";
 
 export default function Page() {
   const { category, data } = useFormContext();
@@ -16,9 +17,9 @@ export default function Page() {
       <section id="section2">
         {" "}
         <SimpleGrid minChildWidth="120px" spacing="40px">
-          {/* {data.map((category: any) => {
+          {data?.results.map((category: any) => {
             return <ResultCard key={category.name} />;
-          })} */}
+          })}
           <Box width={80} height={80}></Box>
         </SimpleGrid>
       </section>
