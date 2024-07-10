@@ -1,11 +1,11 @@
-type Categories = {
-  films: string;
-  people: string;
-  planets: string;
-  species: string;
-  starships: string;
-  vehicles: string;
-};
+type Categories = Films | People | Planets | Species | Starships | Vehicles;
+type CategoryNames =
+  | "films"
+  | "people"
+  | "planets"
+  | "species"
+  | "starships"
+  | "vehicles";
 
 type People = {
   name: string; //The name of this person.
@@ -17,10 +17,10 @@ type People = {
   mass: string; // The mass of the person in kilograms.
   skin_color: string; //The skin color of this person.
   homeworld: string; //The URL of a planet resource, a planet that this person was born on or inhabits.
-  films: []; //An array of film resource URLs that this person has been in.
-  species: []; //An array of species resource URLs that this person belongs to.
-  starships: []; //An array of starship resource URLs that this person has piloted.
-  vehicles: []; //An array of vehicle resource URLs that this person has piloted.
+  films: Films["title"]; //An array of film resource URLs that this person has been in.
+  species: Species["name"]; //An array of species resource URLs that this person belongs to.
+  starships: Starships["name"]; //An array of starship resource URLs that this person has piloted.
+  vehicles: Vehicles["name"]; //An array of vehicle resource URLs that this person has piloted.
   url: string; //the hypermedia URL of this resource.
   created: string; //the ISO 8601 date format of the time that this resource was created.
   edited: string; //the ISO 8601 date format of the time that this resource was edited.
@@ -33,11 +33,11 @@ type Films = {
   director: string; // The name of the director of this film.
   producer: string; // The name(s) of the producer(s) of this film. Comma separated.
   release_date: Date; // The ISO 8601 date format of film release at original creator country.
-  species: []; //An array of species resource URLs that are in this film.
-  starships: []; //An array of starship resource URLs that are in this film.
-  vehicles: []; //An array of vehicle resource URLs that are in this film.
-  characters: []; //An array of people resource URLs that are in this film.
-  planets: []; //An array of planet resource URLs that are in this film.
+  species: Species["name"]; //An array of species resource URLs that are in this film.
+  starships: Starships["name"]; //An array of starship resource URLs that are in this film.
+  vehicles: Vehicles["name"]; //An array of vehicle resource URLs that are in this film.
+  characters: People["name"]; //An array of people resource URLs that are in this film.
+  planets: Planets["name"]; //An array of planet resource URLs that are in this film.
   url: string; //the hypermedia URL of this resource.
   created: string; //the ISO 8601 date format of the time that this resource was created.
   edited: string; //the ISO 8601 date format of the time that this resource was edited.
@@ -94,8 +94,8 @@ type Species = {
   skin_colors: string; // A comma-separated string of common skin colors for this species, "none" if this species does not typically have skin.
   language: string; // The language commonly spoken by this species.
   homeworld: string; // The URL of a planet resource, a planet that this species originates from.
-  people: []; // An array of People URL Resources that are a part of this species.
-  films: []; // An array of Film URL Resources that this species has appeared in.
+  people: People["name"]; // An array of People URL Resources that are a part of this species.
+  films: Films["title"]; // An array of Film URL Resources that this species has appeared in.
   url: string; // the hypermedia URL of this resource.
   created: string; // the ISO 8601 date format of the time that this resource was created.
   edited: string; // the ISO 8601 date format of the time that this resource was edited.
@@ -111,8 +111,8 @@ type Planets = {
   climate: string; // The climate of this planet. Comma separated if diverse.
   terrain: string; // The terrain of this planet. Comma separated if diverse.
   surface_water: string; // The percentage of the planet surface that is naturally occurring water or bodies of water.
-  residents: []; // An array of People URL Resources that live on this planet.
-  films: []; // An array of Film URL Resources that this planet has appeared in.
+  residents: People["name"]; // An array of People URL Resources that live on this planet.
+  films: Films["title"]; // An array of Film URL Resources that this planet has appeared in.
   url: string; // the hypermedia URL of this resource.
   created: string; // the ISO 8601 date format of the time that this resource was created.
   edited: string; // the ISO 8601 date format of the time that this resource was edited.

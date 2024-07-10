@@ -4,6 +4,8 @@ import { Link } from "@chakra-ui/next-js";
 import { Box, Container, SimpleGrid } from "@chakra-ui/react";
 
 export default async function Page() {
+  const data = await getData();
+
   return (
     <Container bg="black" maxWidth="1440px" height="100vh" centerContent>
       <section id="section1">

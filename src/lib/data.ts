@@ -1,7 +1,8 @@
-import next from "next";
+export async function getData(category?: CategoryNames) {
+  const baseURL = "https://swapi.dev/api/";
+  const url = category ? baseURL.concat(category + "/") : baseURL;
 
-export async function getData() {
-  const res = await fetch("https://swapi.dev/api/", {
+  const res = await fetch(url, {
     next: { revalidate: 3600 },
   });
 
