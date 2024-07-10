@@ -1,10 +1,10 @@
-import SearchForm from "@/comoponents/form";
-import { getData } from "@/lib/data";
-import { Link } from "@chakra-ui/next-js";
+"use client";
+import SearchForm from "@/components/form";
 import { Box, Container, SimpleGrid } from "@chakra-ui/react";
+import { useFormContext } from "./providers";
 
-export default async function Page() {
-  const data = await getData();
+export default function Page() {
+  const { category, data } = useFormContext();
 
   return (
     <Container bg="black" maxWidth="1440px" height="100vh" centerContent>
@@ -15,14 +15,11 @@ export default async function Page() {
       </section>
       <section id="section2">
         {" "}
-        <h2>Results to be displayed here</h2>
         <SimpleGrid minChildWidth="120px" spacing="40px">
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
-          <Box bg="tomato" height="80px"></Box>
+          {/* {data.map((category: any) => {
+            return <ResultCard key={category.name} />;
+          })} */}
+          <Box width={80} height={80}></Box>
         </SimpleGrid>
       </section>
     </Container>

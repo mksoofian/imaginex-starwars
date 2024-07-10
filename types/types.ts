@@ -1,3 +1,9 @@
+type ResponseInfo = {
+  count: string;
+  next: string;
+  previous: string;
+  results: Categories[];
+};
 type Categories = Films | People | Planets | Species | Starships | Vehicles;
 type CategoryNames =
   | "films"
