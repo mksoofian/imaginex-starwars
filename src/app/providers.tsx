@@ -35,13 +35,29 @@ export function Providers({ children }: { children: React.ReactNode }) {
     if (category === "") {
       console.log("No category to fetch");
     } else if (category && page > 1) {
-      fetch(`/api/${category.toLowerCase()}/?page=${page}`)
+      //  SERVER SIDE ROUTE
+      //   fetch(`/api/${category.toLowerCase()}/?page=${page}`)
+      //     .then((res) => res.json())
+      //     .then((data) => {
+      //       setData(data);
+      //     });
+
+      //   CLIENT SIDE FETCH
+      fetch(`https://swapi.dev/api/${category.toLowerCase()}/?page=${page}`)
         .then((res) => res.json())
         .then((data) => {
           setData(data);
         });
     } else {
-      fetch(`/api/${category.toLowerCase()}/`)
+      //  SERVER SIDE ROUTE
+      //   fetch(`/api/${category.toLowerCase()}/`)
+      //     .then((res) => res.json())
+      //     .then((data) => {
+      //       setData(data);
+      //     });
+
+      //   CLIENT SIDE FETCH
+      fetch(`https://swapi.dev/api/${category.toLowerCase()}/`)
         .then((res) => res.json())
         .then((data) => {
           setData(data);

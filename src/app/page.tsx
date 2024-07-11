@@ -16,10 +16,13 @@ import ResultCard from "@/components/result.Card";
 import { css } from "@emotion/react";
 
 export default function Page() {
-  const { category, data, setPage } = useFormContext();
+  const { data, setPage } = useFormContext();
 
-  const handlePageChange = () => {
-    const toPage = data?.next.slice(data?.next.length - 1);
+  const handlePageChange = (value: string) => {
+    const toPage =
+      value === "next"
+        ? data?.next.slice(data?.next.length - 1)
+        : data?.previous.slice(data?.previous.length - 1);
     if (toPage === "/") {
       setPage(1);
     } else {
@@ -59,24 +62,25 @@ export default function Page() {
         </SimpleGrid>
 
         {/* Pagination Buttons */}
-        <Flex css={{ margin: "25px" }} justifyContent="center">
+        <Flex css={{ margin: "25px" }} justifyContent="center" gap="20px">
           {data && data?.previous !== null && (
             <Button
-              onClick={handlePageChange}
+              onClick={(e) => handlePageChange(e.currentTarget.value)}
               variant="outline"
               size="md"
               css={{ border: "1px solid black" }}
+              value="prev"
             >
               Previous Page
             </Button>
           )}
-          {data && data?.previous !== null && data?.next !== null && <p> | </p>}
           {data && data?.next !== null && (
             <Button
-              onClick={handlePageChange}
+              onClick={(e) => handlePageChange(e.currentTarget.value)}
               variant="outline"
               size="md"
               css={{ border: "1px solid black" }}
+              value="next"
             >
               Next Page
             </Button>
