@@ -1,5 +1,9 @@
 #### Tech Task for ImagineX using Star Wars API
 
+## Deployement
+
+https://imaginex-starwars-348nb4tgp-mksoofiangmailcoms-projects.vercel.app/
+
 ## Objectives:
 
 - Use ChakraUI for styling
