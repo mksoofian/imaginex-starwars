@@ -12,11 +12,10 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { useFormContext } from "./providers";
-import ResultCard from "@/components/result.Card";
-import { css } from "@emotion/react";
+import ResultCard from "@/components/resultCard";
 
 export default function Page() {
-  const { data, setPage } = useFormContext();
+  const { data, setPage, category } = useFormContext();
 
   const handlePageChange = (value: string) => {
     const toPage =
@@ -55,9 +54,30 @@ export default function Page() {
       {/* RESULTS SECTION  */}
       <Box as="section" id="section2" width="90%">
         <SimpleGrid minChildWidth="240px" spacing="40px">
-          {data?.results.map((category: any) => {
-            return <ResultCard key={category.name} />;
-          })}
+          {/* {category === "films"
+            ? data?.results.map((categories: Films, index) => {
+                // return categories;
+                return <ResultCard key={`${categories.title}+${index}`} />;
+              })
+            : category === "people"
+            ? true
+            : category === "planet"
+            ? true
+            : category === "species"
+            ? true
+            : category === "starships"
+            ? true
+            : category === "vehicles"
+            ? true
+            : null} */}
+
+          {/* {data?.results.map((categories: any, index) => {
+            return (
+              <ResultCard
+                key={`${categories}+${index}`}
+              />
+            );
+          })} */}
           <Box width={80} height={80}></Box>
         </SimpleGrid>
 

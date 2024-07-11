@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function ResultCard() {
-  const { category, data } = useFormContext();
+  const { data, category } = useFormContext();
 
   return (
     <Card>

@@ -30,6 +30,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [data, setData] = useState(null);
   const [category, setCategory] = useState(""); // Why can't I get CategoryNames | null to work...?
   const [page, setPage] = useState(1);
+  const [results, setResults] = useState();
 
   useEffect(() => {
     if (category === "") {
